@@ -1,0 +1,27 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+
+      <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+          {% if Pomeschenie %}
+          {% for b in Pomeschenie %}
+          <div class="card" style="width: 20rem; margin: 1em;">
+      <img src="{{ b.id_pomeschenie.Photo.url }}" style="width: auto; height: auto;" class="card-img-top" alt="...">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{b.id_pomeschenie.Opisanie}}</li>
+        <li class="list-group-item">{{b.id_pomeschenie.id_zdanie.id_adres.Gorod}}<br>{{b.id_pomeschenie.id_zdanie.id_adres.Ulica}}, {{b.id_pomeschenie.id_zdanie.id_adres.Dom}}</li>
+      </ul>
+      <div class="card-body">
+        <a href="{% url 'DogovorInfo' b.id %}" type="button" class="btn btn-primary btn-lg btn-block">Read More</a>
+      </div>
+    </div>
+          {% endfor %}
+          {% else %}
+            <h1>Нет заключенных договоров</h1>
+            {% endif %}
+  </div>
+</div>
+{% endblock %}

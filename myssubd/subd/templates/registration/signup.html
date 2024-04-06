@@ -1,0 +1,38 @@
+{% extends "nav.html" %}
+
+{% block content %}
+
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  {% load static %}
+    <!-- Stylesheets -->
+</head>
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="login-page">
+    <div class="form">
+        <form class="login-form acrylic" method="post" action="{% url 'signup' %}">
+            <span>Sign Up</span>
+            {% csrf_token %}
+            <input type="text" placeholder="Nickname" name="username"/>
+            <input type="password" placeholder="Password" name="password1"/>
+            <input type="password" placeholder="Retry password" name="password2"/>
+            <button id="SignUp">SignUp</button>
+            <p class="message"><a href="{% url 'login'%}?next={% url 'index' %}">Login</a></p>
+            <p class="message"><a href="{% url 'index'%}">Home</a></p>
+        </form>
+    </div>
+    </div>
+        <!-- partial -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+</body>
+</html>
+
+{% endblock %}
+
+
+
+
+

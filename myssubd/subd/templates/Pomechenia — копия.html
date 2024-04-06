@@ -1,0 +1,67 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.discordapp.com/attachments/1027889608631001129/1053373863456669787/card.css">
+
+<div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+        {% if Pomechenia %}
+        {% for p in Pomechenia %}
+
+        <div class="card" style="width: 20rem; margin: 1em;">
+            <img src="{{ p.Photo.url }}" style="width: auto; height: auto;" class="card-img-top" alt="...">
+            <ul class="list-group list-group-flush">
+                {% for i in Dogovor %}
+                {% if p.id == i.id_pomeschenie.id %}
+                <li class="list-group-item">В АРЕНДЕ</li>
+                {% endif %}
+                {% endfor %}
+                <li class="list-group-item"><b>₽</b>{{ p.CenaArendy }}</li>
+
+            </ul>
+            <div class="card-body">
+                <a href="{% url 'PomecheniaInfo' p.id %}" type="button" class="btn btn-primary btn-lg btn-block">Read
+                    More</a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h1>Нет добавленных помещений</h1>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container page-wrapper">
+  <div class="page-inner">
+    <div class="row">
+      <div class="el-wrapper">
+        <div class="box-up">
+          <img class="img" src="https://cdn.discordapp.com/attachments/1027889608631001129/1053370129502707723/4.jpg" alt="">
+          <div class="img-info">
+            <div class="info-inner">
+              <span class="p-name">I feel like Pablo</span>
+              <span class="p-company">Yeezy</span>
+            </div>
+            <div class="a-size">Available sizes : <span class="size">S , M , L , XL</span></div>
+          </div>
+        </div>
+
+        <div class="box-down">
+          <div class="h-bg">
+            <div class="h-bg-inner"></div>
+          </div>
+
+          <a class="cart" href="{% url 'Pomechenia'%}">
+            <span class="price">$120</span>
+            <span class="add-to-cart">
+              <span class="txt">Add in cart</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

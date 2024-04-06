@@ -1,0 +1,14 @@
+{% extends "nav.html" %}
+
+{% block content %}
+ <div class="position-absolute top-50 start-50 translate-middle" style="width: 20rem;">
+<div class="review-section">
+    <div class="container" style="text-align: center;">
+        <h3 class="text-white">Выход</h3>
+        <a type="submit" class="btn btn-primary" href="{% url 'login'%}" >Зайти снова?</a>
+    </div>
+</div>
+ </div>
+<div class="review-section"></div>
+<div class="review-section"></div>
+{% endblock %}

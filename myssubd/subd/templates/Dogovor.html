@@ -1,0 +1,47 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.discordapp.com/attachments/1027889608631001129/1053373863456669787/card.css">
+
+<div class="container page-wrapper">
+    <div class="page-inner">
+        <div class="row">
+          {% if Pomeschenie %}
+          {% for b in Pomeschenie %}
+            <div class="el-wrapper">
+                <div class="box-up"><a href="{% url 'PomecheniaInfo' b.id_pomeschenie.id %}">
+                    <img class="img"
+                         src="{{ b.id_pomeschenie.Photo.url }} "
+                         style="max-width: 300px;"
+                         alt="">
+                    <div class="img-info">
+                        <div class="info-inner">
+                            <span class="p-name">{{b.id_pomeschenie.id_zdanie.id_adres.Gorod}} {{b.id_pomeschenie.id_zdanie.id_adres.Ulica}}, {{b.id_pomeschenie.id_zdanie.id_adres.Dom}}</span>
+                        </div>
+                        <div class="a-size">Описание: <span class="size">Нажми для перехода к помещению</span></div>
+                    </div></a>
+                </div>
+
+                <div class="box-down">
+                    <div class="h-bg">
+                        <div class="h-bg-inner"></div>
+                    </div>
+
+                    <a class="cart" href="{% url 'DogovorInfo' b.id %}">
+                        <span class="price">Договор {{ p.CenaArendy }}</span>
+                        <span class="add-to-cart">
+              <span class="txt">Подробнее</span>
+            </span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+            {% else %}
+                   <h1>Нет заключенных договоров</h1>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdn.discordapp.com/attachments/1027889608631001129/1053373863456669787/card.css">
+
+<div class="container page-wrapper">
+    <div class="page-inner">
+        <div class="row">
+                  {% if Pomechenia %}
+        {% for p in Pomechenia %}
+            <div class="el-wrapper">
+                <div class="box-up"><a href="{% url 'PomecheniaInfo' p.id %}">
+                    <img {% for i in Dogovor %}
+                        {% if p.id == i.id_pomeschenie.id %}
+                            class="img"
+                            {% endif %}
+                            {% endfor %}
+
+                         src="{{ p.Photo.url }} "
+                         style="max-width: 300px; padding: 20px 0;"
+                         alt="">
+                    <div class="img-info">
+                        <div class="info-inner">
+                            {% for i in Dogovor %}
+                        {% if p.id == i.id_pomeschenie.id %}
+                            <span class="p-name">В АРЕНДЕ</span>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="a-size">Адрес: <span class="size">{{p.id_zdanie.id_adres.Gorod}}, {{p.id_zdanie.id_adres.Ulica}}, {{p.id_zdanie.id_adres.Dom}}</span></div>
+                    </div></a>
+                </div>
+
+                <div class="box-down">
+                    <div class="h-bg">
+                        <div class="h-bg-inner"></div>
+                    </div>
+
+                    <a class="cart" href="{% url 'PomecheniaInfo' p.id %}">
+                        <span class="price">₽ {{ p.CenaArendy }}</span>
+                        <span class="add-to-cart">
+              <span class="txt">Подробнее</span>
+            </span>
+                    </a>
+                </div>
+            </div>
+
+        {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

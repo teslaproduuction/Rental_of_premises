@@ -1,0 +1,31 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+
+      <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+            {% if Users %}
+          {% for p in Users %}
+          <div class="card" style="width: 20rem; margin: 1em;">
+              {% if p.Fotografiya %}
+      <img src="{{ p.Fotografiya.url }}" style="width: auto; height: auto;" class="card-img-top" alt="https://buzookod.ru/media/2816616767_vubrbeJ.jpg">
+        {% else %}
+        <img src="https://buzookod.ru/media/2816616767_vubrbeJ.jpg" style="width: auto; height: auto;" class="card-img-top" alt="...">
+        {% endif %}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ p.username }} {{ p.first_name }} {{p.last_name}}</li>
+      </ul>
+      <div class="card-body">
+        <a href="{% url 'Profil' p.id %}" type="button" class="btn btn-primary btn-lg btn-block">Read More</a>
+      </div>
+    </div>
+          {% endfor %}
+          {% else %}
+            <h1>Нет добавленных помещений</h1>
+            {% endif %}
+  </div>
+</div>
+
+{% endblock %}

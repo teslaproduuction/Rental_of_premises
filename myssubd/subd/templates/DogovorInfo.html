@@ -1,0 +1,595 @@
+
+{% load static %}
+{% block content %}
+
+<style>
+/*! jQuery UI - v1.12.1 - 2018-10-17
+* http://jqueryui.com
+* Includes: core.css, autocomplete.css, menu.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?scope=&folderName=base&cornerRadiusShadow=8px&offsetLeftShadow=0px&offsetTopShadow=0px&thicknessShadow=5px&opacityShadow=30&bgImgOpacityShadow=0&bgTextureShadow=flat&bgColorShadow=666666&opacityOverlay=30&bgImgOpacityOverlay=0&bgTextureOverlay=flat&bgColorOverlay=aaaaaa&iconColorError=cc0000&fcError=5f3f3f&borderColorError=f1a899&bgTextureError=flat&bgColorError=fddfdf&iconColorHighlight=777620&fcHighlight=777620&borderColorHighlight=dad55e&bgTextureHighlight=flat&bgColorHighlight=fffa90&iconColorActive=ffffff&fcActive=ffffff&borderColorActive=003eff&bgTextureActive=flat&bgColorActive=007fff&iconColorHover=555555&fcHover=2b2b2b&borderColorHover=cccccc&bgTextureHover=flat&bgColorHover=ededed&iconColorDefault=777777&fcDefault=454545&borderColorDefault=c5c5c5&bgTextureDefault=flat&bgColorDefault=f6f6f6&iconColorContent=444444&fcContent=333333&borderColorContent=dddddd&bgTextureContent=flat&bgColorContent=ffffff&iconColorHeader=444444&fcHeader=333333&borderColorHeader=dddddd&bgTextureHeader=flat&bgColorHeader=e9e9e9&cornerRadius=3px&fwDefault=normal&fsDefault=1em&ffDefault=Arial%2CHelvetica%2Csans-serif
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+body{
+    padding: 20px;
+    overflow: auto;
+    width: 660px;
+    font-family: 'times new roman';
+}
+
+h1{
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+    margin: 0 0 15px;
+}
+h2{
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: normal;
+    margin: 0px;
+}
+p{
+    font-size: 12px;
+    margin: 5px 0px;
+    display: inline;
+}
+ul{
+    font-size: 12px;
+}
+.printConteiner {
+    width: 660px;
+    height: 930.6px;
+    background: #fff;
+    padding: 1cm;
+    box-shadow: 0px 0px 4px 0px #747b74;
+    margin-bottom: 20px;
+    position: relative;
+}
+.noPrint{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px 30px;
+    background: #fdfdfd;
+    margin: 25px;
+    width: calc(100vw - 810px - 2cm);
+}
+.noPrint p{
+    font-size: 18px;
+    display: block;
+    margin: 10px 0 20px;
+    line-height: 1;
+}
+.line{
+    width: 100%;
+    height: 1px;
+    margin: 25px 0px;
+    background-color: #5B89A5;
+}
+.right{
+    float: right;
+}
+.just{
+    text-align: justify;
+    display: block;
+    line-height: 1.2;
+}
+.half-l{
+    margin: -7px 11% 10px;
+    float: left;
+    width: 120px;
+    text-align: center;
+}
+.half-r{
+    margin: -7px 12% 10px;
+    float: right;
+    width: 120px;
+    text-align: center;
+}
+.clear{
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+.warding{
+    display: none;
+}
+.selectType{
+    border: none;
+    outline: none;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-family: inherit;
+    background-color: inherit;
+    margin-left: 4px;
+    cursor: pointer;
+}
+.social{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100px;
+    margin-left: 10px;
+}
+.social img{
+    width: 25px;
+}
+.buttons {
+    width: 660px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 25px;
+    align-items: flex-end;
+}
+.hidePlaceholders {
+    cursor: pointer;
+    color: #0000ee;
+    font-size: 14px;
+    margin: 0px;
+}
+.hidePlaceholders:hover {
+    text-decoration: underline;
+}
+input{
+    position: absolute;
+    background: rgba(238, 238, 238, 0);
+    height: 14px;
+    font-family: times new roman;
+    border: none;
+}
+button{
+    padding: 10px;
+    background: #bda;
+    color: #5D372E;
+    border: none;
+    border-radius: 5px;
+    width: 140px;
+    font-size: 16px;
+    margin: 0px;
+    transition: box-shadow .2s;
+    cursor: pointer;
+}
+button a{
+    text-decoration: none;
+    color: #5D372E;
+}
+
+button:hover{
+    box-shadow: 0 0px 3px 0px #5D372E;
+    transition: box-shadow .2s;
+}
+
+/* Селект выбора параметра договора */
+.selector {
+    padding: 0 30px 10px 0px;
+    position: absolute;
+    left: -266px;
+    width: 260px;
+}
+.selectorHeader {
+    margin-bottom: 10px;
+    color: #fff;
+    background-color: #bda;
+    padding-right: 10px;
+}
+.selector select {
+    background-color: #bda;
+    color: #5D372E;
+    outline: none;
+    border: none;
+    padding: 10px;
+    width: 250px;
+}
+.selector option {
+    font-weight: 900;
+    width: 250px;
+}
+.selectorRing {
+    border: 4px solid #bda;
+    border-radius: 50%;
+    position: absolute;
+    right: -8px;
+    top: 13px;
+}
+.selectorLine {
+    border-top: 1px solid #bda;
+    width: 30px;
+    position: absolute;
+    right: 0px;
+    top: 17px;
+}
+/* /Селект выбора параметра договора */
+
+@media screen and (max-width: 1315px) {
+    body{
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .noPrint{
+        position: relative;
+        padding: 10px 10px;
+        background: #fdfdfd;
+        margin: 0;
+        width: 728px;
+    }
+}
+
+.bgimage {
+    opacity: 0.2;
+    position: absolute;
+    top: 20em;
+    left: 17em;
+    width: 150px;
+}
+
+.noPrintInline {
+    display: inline;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.warningBorder {
+    border: 1px solid red;
+}
+
+/* from DNOU */
+.dnou {
+    height: unset;
+}
+#props {
+  display: flex;
+}
+.dnou p{
+  margin: 2px 0px;
+  letter-spacing: 0;
+  display: inline-block;
+}
+#props p {
+  display: flex;
+  justify-content: space-between;
+}
+#props input {
+  border-bottom: 1px solid #000;
+  position: relative;
+  padding: 1px 4px 0;
+}
+.right-props {
+  width: 49%;
+  margin: 0 0 0 2%
+}
+.left-props {
+  width: 49%;
+}
+.dnou input{
+  height: 12px;
+  font-size: 12px;
+}
+/* скрыть все кроме физ. лиц */
+.firstSideUr, .firstSideSz, .firstSideIp, .secondSideUr, .secondSideSz, .secondSideIp, .ur1, .ur2 {
+  display: none;
+}
+.dnou h2{
+  font-size: 14px;
+  margin: 15px 0 10px;
+}
+.page-separator {
+  page-break-after: always;
+}
+/* /from DNOU */
+
+.centerDogovor {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.centerNoPrint {
+    width: 720px;
+    position: relative;
+    margin: 0;
+    padding: 10px;
+}
+
+@media print {
+  button{
+      display: none;
+  }
+  .buttons{
+      display: none;
+  }
+  .noPrint{
+      display: none;
+  }
+  .noPrintInline{
+      display: none;
+  }
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .selector {
+      display: none;
+  }
+  .printConteiner {
+      width: 660px;
+      background: #fff;
+      padding: 0;
+      box-shadow: none;
+      margin-bottom: 0;
+  }
+  .warningBorder {
+      border: none;
+  }
+}
+
+/* dp */
+.with-border {
+    display: inline;
+    border-bottom: 1px solid #000;
+    margin-top: 2px;
+    padding: 0 5px;
+    position: relative;
+    font-size: 12px;
+}
+
+.p0 {
+    padding: 0;
+}
+
+.pr0 {
+    padding-right: 0;
+}
+
+.ui-helper-hidden{display:none}.ui-helper-hidden-accessible{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.ui-helper-reset{margin:0;padding:0;border:0;outline:0;line-height:1.3;text-decoration:none;font-size:100%;list-style:none}.ui-helper-clearfix:before,.ui-helper-clearfix:after{content:"";display:table;border-collapse:collapse}.ui-helper-clearfix:after{clear:both}.ui-helper-zfix{width:100%;height:100%;top:0;left:0;position:absolute;opacity:0;filter:Alpha(Opacity=0)}.ui-front{z-index:100}.ui-state-disabled{cursor:default!important;pointer-events:none}.ui-icon{display:inline-block;vertical-align:middle;margin-top:-.25em;position:relative;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat}.ui-widget-icon-block{left:50%;margin-left:-8px;display:block}.ui-widget-overlay{position:fixed;top:0;left:0;width:100%;height:100%}.ui-autocomplete{position:absolute;top:0;left:0;cursor:default}.ui-menu{list-style:none;padding:0;margin:0;display:block;outline:0}.ui-menu .ui-menu{position:absolute}.ui-menu .ui-menu-item{margin:0;cursor:pointer;list-style-image:url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")}.ui-menu .ui-menu-item-wrapper{position:relative;padding:3px 1em 3px .4em}.ui-menu .ui-menu-divider{margin:5px 0;height:0;font-size:0;line-height:0;border-width:1px 0 0 0}.ui-menu .ui-state-focus,.ui-menu .ui-state-active{margin:-1px}.ui-menu-icons{position:relative}.ui-menu-icons .ui-menu-item-wrapper{padding-left:2em}.ui-menu .ui-icon{position:absolute;top:0;bottom:0;left:.2em;margin:auto 0}.ui-menu .ui-menu-icon{left:auto;right:0}.ui-widget{font-family:Arial,Helvetica,sans-serif;font-size:1em}.ui-widget .ui-widget{font-size:1em}.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button{font-family:Arial,Helvetica,sans-serif;font-size:1em}.ui-widget.ui-widget-content{border:1px solid #c5c5c5}.ui-widget-content{border:1px solid #ddd;background:#fff;color:#333}.ui-widget-content a{color:#333}.ui-widget-header{border:1px solid #ddd;background:#e9e9e9;color:#333;font-weight:bold}.ui-widget-header a{color:#333}.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default,.ui-button,html .ui-button.ui-state-disabled:hover,html .ui-button.ui-state-disabled:active{border:1px solid #c5c5c5;background:#f6f6f6;font-weight:normal;color:#454545}.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited,a.ui-button,a:link.ui-button,a:visited.ui-button,.ui-button{color:#454545;text-decoration:none}.ui-state-hover,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus,.ui-widget-header .ui-state-focus,.ui-button:hover,.ui-button:focus{border:1px solid #ccc;background:#ededed;font-weight:normal;color:#2b2b2b}.ui-state-hover a,.ui-state-hover a:hover,.ui-state-hover a:link,.ui-state-hover a:visited,.ui-state-focus a,.ui-state-focus a:hover,.ui-state-focus a:link,.ui-state-focus a:visited,a.ui-button:hover,a.ui-button:focus{color:#2b2b2b;text-decoration:none}.ui-visual-focus{box-shadow:0 0 3px 1px rgb(94,158,214)}.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active,a.ui-button:active,.ui-button:active,.ui-button.ui-state-active:hover{border:1px solid #003eff;background:#007fff;font-weight:normal;color:#fff}.ui-icon-background,.ui-state-active .ui-icon-background{border:#003eff;background-color:#fff}.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#fff;text-decoration:none}.ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header .ui-state-highlight{border:1px solid #dad55e;background:#fffa90;color:#777620}.ui-state-checked{border:1px solid #dad55e;background:#fffa90}.ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a{color:#777620}.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error{border:1px solid #f1a899;background:#fddfdf;color:#5f3f3f}.ui-state-error a,.ui-widget-content .ui-state-error a,.ui-widget-header .ui-state-error a{color:#5f3f3f}.ui-state-error-text,.ui-widget-content .ui-state-error-text,.ui-widget-header .ui-state-error-text{color:#5f3f3f}.ui-priority-primary,.ui-widget-content .ui-priority-primary,.ui-widget-header .ui-priority-primary{font-weight:bold}.ui-priority-secondary,.ui-widget-content .ui-priority-secondary,.ui-widget-header .ui-priority-secondary{opacity:.7;filter:Alpha(Opacity=70);font-weight:normal}.ui-state-disabled,.ui-widget-content .ui-state-disabled,.ui-widget-header .ui-state-disabled{opacity:.35;filter:Alpha(Opacity=35);background-image:none}.ui-state-disabled .ui-icon{filter:Alpha(Opacity=35)}.ui-icon{width:16px;height:16px}.ui-icon,.ui-widget-content .ui-icon{background-image:url("images/ui-icons_444444_256x240.png")}.ui-widget-header .ui-icon{background-image:url("images/ui-icons_444444_256x240.png")}.ui-state-hover .ui-icon,.ui-state-focus .ui-icon,.ui-button:hover .ui-icon,.ui-button:focus .ui-icon{background-image:url("images/ui-icons_555555_256x240.png")}.ui-state-active .ui-icon,.ui-button:active .ui-icon{background-image:url("images/ui-icons_ffffff_256x240.png")}.ui-state-highlight .ui-icon,.ui-button .ui-state-highlight.ui-icon{background-image:url("images/ui-icons_777620_256x240.png")}.ui-state-error .ui-icon,.ui-state-error-text .ui-icon{background-image:url("images/ui-icons_cc0000_256x240.png")}.ui-button .ui-icon{background-image:url("images/ui-icons_777777_256x240.png")}.ui-icon-blank{background-position:16px 16px}.ui-icon-caret-1-n{background-position:0 0}.ui-icon-caret-1-ne{background-position:-16px 0}.ui-icon-caret-1-e{background-position:-32px 0}.ui-icon-caret-1-se{background-position:-48px 0}.ui-icon-caret-1-s{background-position:-65px 0}.ui-icon-caret-1-sw{background-position:-80px 0}.ui-icon-caret-1-w{background-position:-96px 0}.ui-icon-caret-1-nw{background-position:-112px 0}.ui-icon-caret-2-n-s{background-position:-128px 0}.ui-icon-caret-2-e-w{background-position:-144px 0}.ui-icon-triangle-1-n{background-position:0 -16px}.ui-icon-triangle-1-ne{background-position:-16px -16px}.ui-icon-triangle-1-e{background-position:-32px -16px}.ui-icon-triangle-1-se{background-position:-48px -16px}.ui-icon-triangle-1-s{background-position:-65px -16px}.ui-icon-triangle-1-sw{background-position:-80px -16px}.ui-icon-triangle-1-w{background-position:-96px -16px}.ui-icon-triangle-1-nw{background-position:-112px -16px}.ui-icon-triangle-2-n-s{background-position:-128px -16px}.ui-icon-triangle-2-e-w{background-position:-144px -16px}.ui-icon-arrow-1-n{background-position:0 -32px}.ui-icon-arrow-1-ne{background-position:-16px -32px}.ui-icon-arrow-1-e{background-position:-32px -32px}.ui-icon-arrow-1-se{background-position:-48px -32px}.ui-icon-arrow-1-s{background-position:-65px -32px}.ui-icon-arrow-1-sw{background-position:-80px -32px}.ui-icon-arrow-1-w{background-position:-96px -32px}.ui-icon-arrow-1-nw{background-position:-112px -32px}.ui-icon-arrow-2-n-s{background-position:-128px -32px}.ui-icon-arrow-2-ne-sw{background-position:-144px -32px}.ui-icon-arrow-2-e-w{background-position:-160px -32px}.ui-icon-arrow-2-se-nw{background-position:-176px -32px}.ui-icon-arrowstop-1-n{background-position:-192px -32px}.ui-icon-arrowstop-1-e{background-position:-208px -32px}.ui-icon-arrowstop-1-s{background-position:-224px -32px}.ui-icon-arrowstop-1-w{background-position:-240px -32px}.ui-icon-arrowthick-1-n{background-position:1px -48px}.ui-icon-arrowthick-1-ne{background-position:-16px -48px}.ui-icon-arrowthick-1-e{background-position:-32px -48px}.ui-icon-arrowthick-1-se{background-position:-48px -48px}.ui-icon-arrowthick-1-s{background-position:-64px -48px}.ui-icon-arrowthick-1-sw{background-position:-80px -48px}.ui-icon-arrowthick-1-w{background-position:-96px -48px}.ui-icon-arrowthick-1-nw{background-position:-112px -48px}.ui-icon-arrowthick-2-n-s{background-position:-128px -48px}.ui-icon-arrowthick-2-ne-sw{background-position:-144px -48px}.ui-icon-arrowthick-2-e-w{background-position:-160px -48px}.ui-icon-arrowthick-2-se-nw{background-position:-176px -48px}.ui-icon-arrowthickstop-1-n{background-position:-192px -48px}.ui-icon-arrowthickstop-1-e{background-position:-208px -48px}.ui-icon-arrowthickstop-1-s{background-position:-224px -48px}.ui-icon-arrowthickstop-1-w{background-position:-240px -48px}.ui-icon-arrowreturnthick-1-w{background-position:0 -64px}.ui-icon-arrowreturnthick-1-n{background-position:-16px -64px}.ui-icon-arrowreturnthick-1-e{background-position:-32px -64px}.ui-icon-arrowreturnthick-1-s{background-position:-48px -64px}.ui-icon-arrowreturn-1-w{background-position:-64px -64px}.ui-icon-arrowreturn-1-n{background-position:-80px -64px}.ui-icon-arrowreturn-1-e{background-position:-96px -64px}.ui-icon-arrowreturn-1-s{background-position:-112px -64px}.ui-icon-arrowrefresh-1-w{background-position:-128px -64px}.ui-icon-arrowrefresh-1-n{background-position:-144px -64px}.ui-icon-arrowrefresh-1-e{background-position:-160px -64px}.ui-icon-arrowrefresh-1-s{background-position:-176px -64px}.ui-icon-arrow-4{background-position:0 -80px}.ui-icon-arrow-4-diag{background-position:-16px -80px}.ui-icon-extlink{background-position:-32px -80px}.ui-icon-newwin{background-position:-48px -80px}.ui-icon-refresh{background-position:-64px -80px}.ui-icon-shuffle{background-position:-80px -80px}.ui-icon-transfer-e-w{background-position:-96px -80px}.ui-icon-transferthick-e-w{background-position:-112px -80px}.ui-icon-folder-collapsed{background-position:0 -96px}.ui-icon-folder-open{background-position:-16px -96px}.ui-icon-document{background-position:-32px -96px}.ui-icon-document-b{background-position:-48px -96px}.ui-icon-note{background-position:-64px -96px}.ui-icon-mail-closed{background-position:-80px -96px}.ui-icon-mail-open{background-position:-96px -96px}.ui-icon-suitcase{background-position:-112px -96px}.ui-icon-comment{background-position:-128px -96px}.ui-icon-person{background-position:-144px -96px}.ui-icon-print{background-position:-160px -96px}.ui-icon-trash{background-position:-176px -96px}.ui-icon-locked{background-position:-192px -96px}.ui-icon-unlocked{background-position:-208px -96px}.ui-icon-bookmark{background-position:-224px -96px}.ui-icon-tag{background-position:-240px -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px -112px}.ui-icon-calendar{background-position:-32px -112px}.ui-icon-cart{background-position:-48px -112px}.ui-icon-pencil{background-position:-64px -112px}.ui-icon-clock{background-position:-80px -112px}.ui-icon-disk{background-position:-96px -112px}.ui-icon-calculator{background-position:-112px -112px}.ui-icon-zoomin{background-position:-128px -112px}.ui-icon-zoomout{background-position:-144px -112px}.ui-icon-search{background-position:-160px -112px}.ui-icon-wrench{background-position:-176px -112px}.ui-icon-gear{background-position:-192px -112px}.ui-icon-heart{background-position:-208px -112px}.ui-icon-star{background-position:-224px -112px}.ui-icon-link{background-position:-240px -112px}.ui-icon-cancel{background-position:0 -128px}.ui-icon-plus{background-position:-16px -128px}.ui-icon-plusthick{background-position:-32px -128px}.ui-icon-minus{background-position:-48px -128px}.ui-icon-minusthick{background-position:-64px -128px}.ui-icon-close{background-position:-80px -128px}.ui-icon-closethick{background-position:-96px -128px}.ui-icon-key{background-position:-112px -128px}.ui-icon-lightbulb{background-position:-128px -128px}.ui-icon-scissors{background-position:-144px -128px}.ui-icon-clipboard{background-position:-160px -128px}.ui-icon-copy{background-position:-176px -128px}.ui-icon-contact{background-position:-192px -128px}.ui-icon-image{background-position:-208px -128px}.ui-icon-video{background-position:-224px -128px}.ui-icon-script{background-position:-240px -128px}.ui-icon-alert{background-position:0 -144px}.ui-icon-info{background-position:-16px -144px}.ui-icon-notice{background-position:-32px -144px}.ui-icon-help{background-position:-48px -144px}.ui-icon-check{background-position:-64px -144px}.ui-icon-bullet{background-position:-80px -144px}.ui-icon-radio-on{background-position:-96px -144px}.ui-icon-radio-off{background-position:-112px -144px}.ui-icon-pin-w{background-position:-128px -144px}.ui-icon-pin-s{background-position:-144px -144px}.ui-icon-play{background-position:0 -160px}.ui-icon-pause{background-position:-16px -160px}.ui-icon-seek-next{background-position:-32px -160px}.ui-icon-seek-prev{background-position:-48px -160px}.ui-icon-seek-end{background-position:-64px -160px}.ui-icon-seek-start{background-position:-80px -160px}.ui-icon-seek-first{background-position:-80px -160px}.ui-icon-stop{background-position:-96px -160px}.ui-icon-eject{background-position:-112px -160px}.ui-icon-volume-off{background-position:-128px -160px}.ui-icon-volume-on{background-position:-144px -160px}.ui-icon-power{background-position:0 -176px}.ui-icon-signal-diag{background-position:-16px -176px}.ui-icon-signal{background-position:-32px -176px}.ui-icon-battery-0{background-position:-48px -176px}.ui-icon-battery-1{background-position:-64px -176px}.ui-icon-battery-2{background-position:-80px -176px}.ui-icon-battery-3{background-position:-96px -176px}.ui-icon-circle-plus{background-position:0 -192px}.ui-icon-circle-minus{background-position:-16px -192px}.ui-icon-circle-close{background-position:-32px -192px}.ui-icon-circle-triangle-e{background-position:-48px -192px}.ui-icon-circle-triangle-s{background-position:-64px -192px}.ui-icon-circle-triangle-w{background-position:-80px -192px}.ui-icon-circle-triangle-n{background-position:-96px -192px}.ui-icon-circle-arrow-e{background-position:-112px -192px}.ui-icon-circle-arrow-s{background-position:-128px -192px}.ui-icon-circle-arrow-w{background-position:-144px -192px}.ui-icon-circle-arrow-n{background-position:-160px -192px}.ui-icon-circle-zoomin{background-position:-176px -192px}.ui-icon-circle-zoomout{background-position:-192px -192px}.ui-icon-circle-check{background-position:-208px -192px}.ui-icon-circlesmall-plus{background-position:0 -208px}.ui-icon-circlesmall-minus{background-position:-16px -208px}.ui-icon-circlesmall-close{background-position:-32px -208px}.ui-icon-squaresmall-plus{background-position:-48px -208px}.ui-icon-squaresmall-minus{background-position:-64px -208px}.ui-icon-squaresmall-close{background-position:-80px -208px}.ui-icon-grip-dotted-vertical{background-position:0 -224px}.ui-icon-grip-dotted-horizontal{background-position:-16px -224px}.ui-icon-grip-solid-vertical{background-position:-32px -224px}.ui-icon-grip-solid-horizontal{background-position:-48px -224px}.ui-icon-gripsmall-diagonal-se{background-position:-64px -224px}.ui-icon-grip-diagonal-se{background-position:-80px -224px}.ui-corner-all,.ui-corner-top,.ui-corner-left,.ui-corner-tl{border-top-left-radius:3px}.ui-corner-all,.ui-corner-top,.ui-corner-right,.ui-corner-tr{border-top-right-radius:3px}.ui-corner-all,.ui-corner-bottom,.ui-corner-left,.ui-corner-bl{border-bottom-left-radius:3px}.ui-corner-all,.ui-corner-bottom,.ui-corner-right,.ui-corner-br{border-bottom-right-radius:3px}.ui-widget-overlay{background:#aaa;opacity:.3;filter:Alpha(Opacity=30)}.ui-widget-shadow{-webkit-box-shadow:0 0 5px #666;box-shadow:0 0 5px #666}
+        </style>
+<!-- saved from url=(0141)https://blank-dogovor-kupli-prodazhi.ru/%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B/dap/dogovor-arendy-pomescheniya-zapolnit-online.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <meta http-equiv="Content-language" content="ru">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="all">
+    <meta name="author" lang="ru" content="Договор купли-продажи">
+    <meta name="copyright" lang="ru" content="Бланк договор купли-продажи">
+    <!-- verification -->
+    
+    <meta content="договор аренды помещения," name="keywords">
+
+    <!-- google anal-->
+
+    <!-- Open Graph END-->
+    <title> Договор аренды помещения </title>
+    <!-- CSS -->
+    <!-- js -->
+    <script>
+      document.createElement('sides');
+      document.createElement('sidesRequisites');
+    </script>
+    <!-- Yandex.RTB -->
+    <script>window.yaContextCb=window.yaContextCb||[]</script>
+ </style></head>
+
+  <body class="centerDogovor">
+    <div class="printConteiner" id="pdf">
+      <h1>Договор аренды помещения № <input name="dapNumber" value="{{Dogovor.id}}" class="with-border" style="width: 70px;"></h1>
+      <p>Город _<input type="text" style="width: 170px;" value="{{Adres.Gorod}},">_____________________________</p> <p class="right"><input name="dapDateFrom" value="{{Dogovor.DataNachala}}" onchange="copyInput(this, &#39;dapDateFrom&#39;)" class="with-border" style="width: 100px;"></p><br>
+      <div class="clear"></div>
+
+      <sides firstsidestatus="Арендодатель" secondsidestatus="Арендатор" firstsidestatusby="Арендодателя" secondsidestatusby="Арендатора" whatdo="заключили настоящий договор о нижеследующем"><div>
+        <div class="firstSideFz">
+        <p><input onchange="checkInput(this); copyInput(this, &#39;company1&#39;)" name="company1" type="text" style="width: 655px;" value="Ярославский Государственный Технический Университет" title="Название организации Арендодателя">_____________________________________________________________________________________________________________</p><br>
+        <p>в лице _<input onchange="checkInput(this)" style="width: 605px;" value="{{UserZ.id_dolzhnost.NaimenovanieDolzhnosti}} {{UserZ.last_name}} {{UserZ.username}} {{UserZ.first_name}}" title="должность и Ф.И.О. уполномоченного лица">______________________________________________________________________________________________________,</p>
+        <p>действующего на основании _<input onchange="checkInput(this)" id="osnovanie" value="Устава" style="width: 262px;" title="документ-основание полномочий (устав, доверенность)" class="ui-autocomplete-input" autocomplete="off">____________________________________________, именуемый в дальнейшем "Арендодатель", и</p>
+        </div>
+        <div class="firstSideUr">
+        <p><input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" type="text" style="width: 337px;" placeholder="Иванов Иван Иванович">_________________________________________________________, паспорт серии _<input onchange="copyInput(this, &#39;serial1&#39;)" name="serial1" type="text" style="width: 35px;" placeholder="6505">______ №_<input onchange="copyInput(this, &#39;number1&#39;)" name="number1" type="text" style="width: 48px;" placeholder="123456">________, выдан _<input onchange="copyInput(this, &#39;given1&#39;)" name="given1" type="text" style="width: 60px;" placeholder="23.09.2004">____________г.</p>
+        <p><input onchange="copyInput(this, &#39;whoGiven1&#39;)" name="whoGiven1" type="text" style="width: 660px;" placeholder="отделом УФМС России по гор. Москва, 770-103">______________________________________________________________________________________________________________</p>
+        <p>код подразделения _<input onchange="copyInput(this, &#39;code1&#39;)" name="code1" type="text" style="width: 60px;" placeholder="770-103">______________, именуемый в дальнейшем "Арендодатель", и</p>
+        </div>
+        <div class="firstSideSz">
+        <p><input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" type="text" style="width: 337px;" placeholder="Иванов Иван Иванович">_________________________________________________________, паспорт серии _<input onchange="copyInput(this, &#39;serial1&#39;)" name="serial1" type="text" style="width: 35px;" placeholder="6505">______ №_<input onchange="copyInput(this, &#39;number1&#39;)" name="number1" type="text" style="width: 48px;" placeholder="123456">________, выдан _<input onchange="copyInput(this, &#39;given1&#39;)" name="given1" type="text" style="width: 60px;" placeholder="23.09.2004">____________г.</p>
+        <p><input onchange="copyInput(this, &#39;whoGiven1&#39;)" name="whoGiven1" type="text" style="width: 660px;" placeholder="отделом УФМС России по гор. Москва, 770-103">______________________________________________________________________________________________________________</p>
+        <p>код подразделения _<input onchange="copyInput(this, &#39;code1&#39;)" name="code1" type="text" style="width: 60px;" placeholder="770-103">______________, действующий как физическое лицо с применением налогового режима "налог на профессиональный доход" именуемый в дальнейшем "Арендодатель", и</p>
+        </div>
+        <div class="firstSideIp">
+        <p>Индивидуальный предприниматель <input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" type="text" style="width: 337px;" placeholder="Иванов Иван Иванович">_________________________________________________________, зарегистрированный в
+            реестре индивидуальных предпринимателей под № _<input onchange="copyInput(this, &#39;ogrnip1&#39;)" name="ogrnip1" type="text" style="width: 135px;" title="ОГРНИП" placeholder="431665800209000">________________________, именуемый в дальнейшем "Арендодатель", и</p>
+        </div>
+
+
+
+        <div class="secondSideUr">
+        <p><input onchange="checkInput(this); copyInput(this, &#39;company2&#39;)" name="company2" type="text" style="width: 655px;" placeholder="ООО Вторая компания" title="Название организации Арендатора">_____________________________________________________________________________________________________________</p>
+        <p>в лице _<input onchange="checkInput(this)" style="width: 605px;" value="{{User.username}}" title="должность и Ф.И.О. уполномоченного лица">______________________________________________________________________________________________________,</p>
+        <p>действующего на основании _<input onchange="checkInput(this)" id="osnovanie1" placeholder="Устава" style="width: 285px;" title="документ-основание полномочий (устав, доверенность)" class="ui-autocomplete-input" autocomplete="off">_______________________________________________, именуемый в дальнейшем "Арендатор", заключили настоящий договор о нижеследующем.</p>
+        </div>
+        <div class="secondSideFz">
+        <p><input onchange="copyInput(this, &#39;fio2&#39;)" name="fio2" type="text" style="width: 380px;" value="{{Firma.NaimenovanieFirmy}} в лице {{User.last_name}} {{User.username}} {{User.first_name}}">______________________________________________________, паспорт серии <input onchange="copyInput(this, &#39;serial2&#39;)" name="serial2" type="text" style="width: 35px;" value="{{User.id_pasportnyedannye.Seriya}}">_____ №_<input onchange="copyInput(this, &#39;number2&#39;)" name="number2" type="text" style="width: 48px;" value="{{User.id_pasportnyedannye.Nomer}}">________, выдан _<input onchange="copyInput(this, &#39;given2&#39;)" name="given2" type="text" style="width: 150px;" value="{{User.id_pasportnyedannye.DataVydachi}}">_________________.</p>
+        <p><input onchange="copyInput(this, &#39;whoGiven2&#39;)" name="whoGiven2" type="text" style="width: 660px;" value="{{User.id_pasportnyedannye.KemVydan}}">______________________________________________________________________________________________________________</p>
+        <p>код подразделения _<input type="text" style="width: 50px;" value="{{User.id_pasportnyedannye.KodPodrazdeleniya}}">__________, именуемый в дальнейшем "Арендатор", заключили настоящий договор о нижеследующем.</p>
+        </div>
+        <div class="secondSideSz">
+        <p><input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" type="text" style="width: 337px;" placeholder="Сидоров Михаил Петрович">_________________________________________________________, паспорт серии _<input onchange="copyInput(this, &#39;serial2&#39;)" name="serial2" type="text" style="width: 35px;" placeholder="6505">______ №_<input onchange="copyInput(this, &#39;number2&#39;)" name="number2" type="text" style="width: 48px;" placeholder="123456">________, выдан _<input onchange="copyInput(this, &#39;given2&#39;)" name="given2" type="text" style="width: 60px;" placeholder="23.09.2004">____________г.</p>
+        <p><input onchange="copyInput(this, &#39;whoGiven2&#39;)" name="whoGiven2" type="text" style="width: 660px;" placeholder="отделом УФМС России по гор. Москва, 770-103">______________________________________________________________________________________________________________</p>
+        <p>код подразделения _<input onchange="copyInput(this, &#39;code2&#39;)" name="code2" type="text" style="width: 60px;" placeholder="770-103">______________, действующий как физическое лицо с применением налогового режима "налог на профессиональный доход" именуемый в дальнейшем "Арендатор", заключили настоящий договор о нижеследующем.</p>
+        </div>
+        <div class="secondSideIp">
+        <p>Индивидуальный предприниматель <input onchange="copyInput(this, &#39;fio2&#39;)" name="fio2" type="text" style="width: 337px;" placeholder="Сидоров Михаил Петрович">_________________________________________________________, зарегистрированный в
+            реестре индивидуальных предпринимателей под № _<input onchange="copyInput(this, &#39;ogrnip2&#39;)" name="ogrnip2" type="text" style="width: 135px;" title="ОГРНИП" placeholder="431665800209000">________________________, именуемый в дальнейшем "Арендатор", заключили настоящий договор о нижеследующем.</p>
+        </div>
+    </div></sides>
+      <!-- <h2>1. Предмет договора</h2> -->
+      <p>1.1. Арендодатель сдает, а Арендатор принимает в аренду <b>помещение</b> площадью_<input name="dapSquare" onchange="copyInput(this, &#39;dapSquare&#39;)" type="text" style="width: 230px;" value="{{Pomeschenie.PoleznaiaPloshad}}м²">_______________________________________,</p><br>
+      <p>расположенное по адресу: _<input name="dapAdress" onchange="copyInput(this, &#39;dapAdress&#39;)" type="text" style="width: 510px;" value="{{Adres.Strana}}, {{Adres.Gorod}}, {{Adres.Ulica}}, {{Adres.Dom}}, {% if Adres.Kvartira %} {{Adres.Kvartira}}, {% endif %} {{Adres.Indeks}}, {{Pomeschenie.NomerEtazha}} этаж">_____________________________________________________________________________________,</p><br>
+      <p>1.2. Указанное <b>помещение</b> принадлежит <b>Арендодателю</b> на основании _<input type="text" style="width: 282px;" value="Устава">_______________________________________________,</p><br>
+      <p>_<input type="text" style="width: 640px;">____________________________________________________________________________________________________________,</p><br>
+      <p class="just">1.3. Арендодатель гарантирует, что до совершения настоящего договора указанное в п.1.1. имущество никому другому не продано, не сдано, не заложено, в споре, под арестом и запретом не состоит и свободно от любых прав третьих лиц.</p>
+      <!-- <h2>2. Срок аренды помещения</h2> -->
+      <p>2.1. Срок аренды Помещения: с _<input type="text" value="{{Dogovor.DataNachala}}" style="width: 110px;" >_________________ до _<input type="text" style="width: 110px;" value="{{Dogovor.DataOkonchaniia}}">_________________. (включительно).</p><br>
+      <p>2.2. Государственную регистрацию Договора осуществляет <select style="font-weight: 500; font-size: 12px;" class="selectType">
+        <option>Арендодатель</option>
+        <option>Арендатор</option>
+      </select> за собственный счет в течение 1 месяца с момента подписания Договора.</p><br>
+      <p>2.3. Автоматическое продление срока аренды <select style="font-weight: 500; font-size: 12px;" class="selectType">
+        <option>не предусмотрено</option>
+        <option>предусмотрено</option>
+      </select>.</p><br>
+      <!-- <h2>3. Арендная плата</h2> -->
+      <p>3.1. Размер <input onchange="copyInput(this, &#39;code2&#39;)" name="code2" type="text" style="width: 180 px;" value="{{Dogovor.id_TipPlatyZaPomeshchenie.NaimenovanieOplaty}}й">_________________ платы за арендованное помещение составляет:_<input type="text" style="width: 280px;" value="{{Pomeschenie.CenaArendy}} ₽">____________________________________</p><br>
+      <p>3.2. Арендная плата вносится <b>Арендатором</b> не позднее _<input type="text" style="width: 50px;" value="10">________ числа каждого месяца путем перечисления указанной в п.3.1 суммы на расчетный счет <b>Арендодателя</b>.</p><br>
+      <p>3.3. Коммунальные услуги оплачивает: _<input type="text" style="width: 434px;" value="Арендатор">_________________________________________________________________________.</p><br>
+      <p>3.4. При подписании договора <b>Арендатором</b> <select style="font-weight: 500; font-size: 12px;" class="selectType">
+        <option>не вносится</option>
+          <option>вносится</option>
+      </select> залоговая сумма в размере: _<input type="text" style="width: 165px;" placeholder="₽">____________________________, которая возвращается <b>Арендатору</b> при выезде из арендуемого помещения.</p><br>
+      <!-- <h2>4. Права и обязанности сторон</h2> -->
+      <p>4.1. Стороны несут ответственность за неисполнение (ненадлежащее исполнение) своих обязанностей в соответствии с законодательством РФ.</p>
+      <p class="just">4.2. Арендатор  <select style="font-weight: 500; font-size: 12px;" class="selectType">
+        <option>не имеет</option>
+          <option>имеет</option>
+      </select>право передавать помещение в субаренду в пределах срока Договора аренды помещения.</p>
+      <!-- <h2>5. Прочие условия</h2> -->
+      <p>5.1. Любые изменения и дополнения к настоящему Договору действительны при условии, если они совершены в письменной форме и подписаны сторонами и зарегистрированы в установленном законом порядке.</p><br>
+      <p>5.2. Настоящий Договор составлен в трех экземплярах, по одному для каждой из Сторон, один экземпляр для государственного органа, осуществляющего регистрацию договора аренды, все экземпляры имеют одинаковую юридическую силу.</p><br>
+      <p>5.3. Во всем остальном, не предусмотренном настоящим Договором, стороны будут руководствоваться действующим законодательством РФ.</p><br>
+      <br>
+      <h2>Адреса, реквизиты и подписи сторон</h2>
+      <sidesrequisites firstsidestatus="Арендодатель" secondsidestatus="Арендатор" firstsidestatusby="Арендодателя" secondsidestatusby="Арендатора"><div id="props">
+        <div class="left-props">
+            <p>Арендодатель</p>
+            <div class="firstSideFz">
+                <p>Ф.И.О.: <input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" style="width: 274px;" value="{{UserZ.last_name}} {{UserZ.username}} {{UserZ.first_name}}"></p>
+                <p>Паспорт серии: <input onchange="copyInput(this, &#39;serial1&#39;)" name="serial1" value="{{UserZ.id_pasportnyedannye.Seriya}}" style="width: 100px;"> № <input value="{{UserZ.id_pasportnyedannye.Nomer}}" onchange="copyInput(this, &#39;number1&#39;)" name="number1" style="width: 100px;"></p>
+                <p>Кем выдан: <input onchange="checkInput(this)"  name="whoGiven1" style="width: 252px;"></p>
+                <p><input style="width: 315px;" value="{{UserZ.id_pasportnyedannye.KemVydan}}"></p>
+                <p>Дата выдачи: <input onchange="copyInput(this, &#39;given1&#39;)" value="{{UserZ.id_pasportnyedannye.DataVydachi}}" name="given1" style="width: 245px;"></p>
+                <p>Код подразделения: <input onchange="copyInput(this, &#39;code1&#39;)" value="{{UserZ.id_pasportnyedannye.KodPodrazdeleniya}}" name="code1" style="width: 210px;"></p>
+                <p>Место жительства: <input style="width: 215px;" value="{{UserZ.id_adres.Strana}}, {{UserZ.id_adres.Gorod}}, "></p>
+                <p><input style="width: 315px;" value="{{UserZ.id_adres.Ulica}}, Дом {{UserZ.id_adres.Dom}}, {% if UserZ.id_adres.Kvartira %} Квартира: {{UserZ.id_adres.Kvartira}}, {% endif %} Индекс {{UserZ.id_adres.Indeks}}"></p>
+                <p>ИНН: <input value="{{FirmaZ.INN}}" style="width: 285px;"></p>
+                <p>КПП: <input value="{{FirmaZ.KPP}}" style="width: 285px;"></p>
+                <p>Банковские реквизиты: <input style="width: 192px;"value="{{FirmaZ.RaschetnySchet}}"></p>
+                <p><input value="Банк: {{FirmaZ.Bank}}" style="width: 315px;"></p>
+                <p>Подпись Арендодателя: <input style="width: 192px;"></p>
+            </div>
+            <div class="firstSideUr">
+                <p>Наименование: <input onchange="checkInput(this)" name="company1" style="width: 235px;" placeholder="ООО Моя компания"></p>
+                <p>Юридический адрес: <input style="width: 205px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>ОГРН: <input style="width: 280px;"></p>
+                <p>ИНН: <input style="width: 285px;"></p>
+                <p>КПП: <input style="width: 285px;"></p>
+                <p>Р/с: <input style="width: 295px;"></p>
+                <p>в <input style="width: 305px;"></p>
+                <p>К/с: <input style="width: 295px;"></p>
+                <p>БИК: <input style="width: 285px;"></p>
+                <p>ОКПО: <input style="width: 275px;"></p>
+                <p>От имени Арендодателя: <input style="width: 187px;"></p>
+            </div>
+            <div class="firstSideSz">
+                <p>Ф.И.О.: <input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" style="width: 274px;" ></p>
+                <p>Паспорт серии: <input onchange="copyInput(this, &#39;serial1&#39;)" name="serial1" style="width: 100px;"> № <input onchange="copyInput(this, &#39;number1&#39;)" name="number1" style="width: 100px;"></p>
+                <p>Кем выдан: <input onchange="checkInput(this)" name="whoGiven1" style="width: 252px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>Дата выдачи: <input onchange="copyInput(this, &#39;given1&#39;)" name="given1" style="width: 245px;"></p>
+                <p>Код подразделения: <input onchange="copyInput(this, &#39;code1&#39;)" name="code1" style="width: 210px;"></p>
+                <p>Место жительства: <input style="width: 215px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>Банковские реквизиты: <input style="width: 192px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>Подпись Арендодателя: <input style="width: 192px;"></p>
+            </div>
+            <div class="firstSideIp">
+                <p>ИП: <input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" style="width: 288px;" value="{{UserZ.last_name}} {{UserZ.username}} {{UserZ.first_name}}"></p>
+                <p>Адрес регистрации: <input style="width: 206px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>ОГРНИП: <input name="ogrnip1" style="width: 260px;"></p>
+                <p>ИНН: <input style="width: 282px;"></p>
+                <p>Расчётный счёт: <input style="width: 229px;"></p>
+                <p>Банк: <input style="width: 280px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>БИК: <input style="width: 278px;"></p>
+                <p>Корр. счёт: <input style="width: 252px;"></p>
+                <p>Подпись Арендодателя: <input style="width: 192px;"></p>
+            </div>
+        </div>
+        <div class="right-props">
+            <p>Арендатор</p>
+            <div class="secondSideFz">
+                <p>Ф.И.О.: <input onchange="copyInput(this, &#39;fio1&#39;)" name="fio1" style="width: 274px;" value="{{User.last_name}} {{User.username}} {{User.first_name}}"></p>
+                <p>Паспорт серии: <input onchange="copyInput(this, &#39;serial1&#39;)" name="serial1" value="{{User.id_pasportnyedannye.Seriya}}" style="width: 100px;"> № <input value="{{User.id_pasportnyedannye.Nomer}}" onchange="copyInput(this, &#39;number1&#39;)" name="number1" style="width: 100px;"></p>
+                <p>Кем выдан: <input onchange="checkInput(this)"  name="whoGiven1" style="width: 252px;"></p>
+                <p><input style="width: 315px;" value="{{User.id_pasportnyedannye.KemVydan}}"></p>
+                <p>Дата выдачи: <input onchange="copyInput(this, &#39;given1&#39;)" value="{{User.id_pasportnyedannye.DataVydachi}}" name="given1" style="width: 245px;"></p>
+                <p>Код подразделения: <input onchange="copyInput(this, &#39;code1&#39;)" value="{{User.id_pasportnyedannye.KodPodrazdeleniya}}" name="code1" style="width: 210px;"></p>
+                <p>Место жительства: <input style="width: 215px;" value="{{User.id_adres.Strana}}, {{User.id_adres.Gorod}}, "></p>
+                <p><input style="width: 315px;" value="{{User.id_adres.Ulica}}, Дом {{User.id_adres.Dom}}, {% if User.id_adres.Kvartira %} Квартира: {{User.id_adres.Kvartira}}, {% endif %} Индекс {{User.id_adres.Indeks}}"></p>
+                <p>ИНН: <input value="{{Firma.INN}}" style="width: 285px;"></p>
+                <p>КПП: <input value="{{Firma.KPP}}" style="width: 285px;"></p>
+                <p>Банковские реквизиты: <input style="width: 192px;"value="{{Firma.RaschetnySchet}}"></p>
+                <p><input value="Банк: {{Firma.Bank}}" style="width: 315px;"></p>
+                <p>Подпись Арендодателя: <input style="width: 192px;"></p>
+            </div>
+            <div class="secondSideUr">
+                <p>Наименование: <input onchange="checkInput(this)" name="company2" style="width: 235px;" placeholder="ООО Вторая компания"></p>
+                <p>Юридический адрес: <input style="width: 205px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>ОГРН: <input style="width: 280px;"></p>
+                <p>ИНН: <input style="width: 285px;"></p>
+                <p>КПП: <input style="width: 285px;"></p>
+                <p>Р/с: <input style="width: 295px;"></p>
+                <p>в <input style="width: 305px;"></p>
+                <p>К/с: <input style="width: 295px;"></p>
+                <p>БИК: <input style="width: 285px;"></p>
+                <p>ОКПО: <input style="width: 275px;"></p>
+                <p>От имени Арендатора: <input style="width: 200px;"></p>
+            </div>
+            <div class="secondSideSz">
+                <p>Ф.И.О.: <input onchange="copyInput(this, &#39;fio2&#39;)" name="fio2" style="width: 274px;" placeholder="Сидоров Михаил Петрович"></p>
+                <p>Паспорт серии: <input onchange="copyInput(this, &#39;serial2&#39;)" name="serial2" style="width: 100px;"> № <input onchange="copyInput(this, &#39;number2&#39;)" name="number2" style="width: 100px;"></p>
+                <p>Кем выдан: <input onchange="checkInput(this)" name="whoGiven2" style="width: 252px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>Дата выдачи: <input onchange="copyInput(this, &#39;given2&#39;)" name="given2" style="width: 245px;"></p>
+                <p>Код подразделения: <input onchange="copyInput(this, &#39;code2&#39;)" name="code2" style="width: 210px;"></p>
+                <p>Место жительства: <input style="width: 215px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>Банковские реквизиты: <input style="width: 192px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>Подпись Арендатора: <input style="width: 192px;"></p>
+            </div>
+            <div class="secondSideIp">
+                <p>ИП: <input onchange="copyInput(this, &#39;fio2&#39;)" name="fio2" style="width: 288px;" placeholder="Сидоров Михаил Петрович"></p>
+                <p>Адрес регистрации: <input style="width: 206px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>ОГРНИП: <input onchange="copyInput(this, &#39;ogrnip2&#39;)" name="ogrnip2" style="width: 260px;"></p>
+                <p>ИНН: <input style="width: 282px;"></p>
+                <p>Расчётный счёт: <input style="width: 229px;"></p>
+                <p>Банк: <input style="width: 280px;"></p>
+                <p><input style="width: 315px;"></p>
+                <p>БИК: <input style="width: 278px;"></p>
+                <p>Корр. счёт: <input style="width: 252px;"></p>
+                <p>Подпись Арендатора: <input style="width: 192px;"></p>
+            </div>
+        </div>
+    </div></sidesrequisites>
+
+    </div>
+    <div class="buttons" style="position: relative; margin: 15px 40px 0px;">
+        <a class ="print-doc" href="{% url 'index'%}"><button class="btn btn-outline-primary">Главная</button></a>
+        <a class ="print-doc" href="javascript:(print());"><button class="btn btn-outline-primary">Печать</button></a>
+    </div>
+
+
+<ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div><ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul><div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div></body></html>
+
+
+{% endblock %}

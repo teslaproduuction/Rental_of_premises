@@ -1,0 +1,50 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.discordapp.com/attachments/1027889608631001129/1053373863456669787/card.css">
+
+<div class="container page-wrapper">
+    <div class="page-inner">
+        <div class="row">
+             {% if Users %}
+          {% for p in Users %}
+            <div class="el-wrapper">
+                <div class="box-up"><a href="{% url 'Profil' p.id %}">
+                    <img class="img"
+                          {% if p.Fotografiya %}
+                         src="{{ p.Fotografiya.url }}"
+                            {% else %}
+                         src="https://www.bc.net/sites/www.bc.net/files/bcnet/NewsEvents/ConferenceArchives/2019Conference/Blank-Image-V1_27.png"
+                            {% endif %}
+                         style="max-width: 250px;"
+                         alt="">
+                    <div class="img-info">
+                        <div class="info-inner">
+                            <span class="p-name">{{ p.username }} {{ p.first_name }} {{p.last_name}}</span>
+                        </div>
+                        <div class="a-size">Описание: <span class="size"><br> Почта: {{ p.email }}<br> Телефон: {{ p.TelefonPolzovatelya }}<br> Дата регистрации: {{ p.date_joined }}</span></div>
+                    </div></a>
+                </div>
+
+                <div class="box-down">
+                    <div class="h-bg">
+                        <div class="h-bg-inner"></div>
+                    </div>
+
+                    <a class="cart" href="{% url 'Profil' p.id %}">
+                        <span class="price">User {{ p.CenaArendy }}</span>
+                        <span class="add-to-cart">
+              <span class="txt">Подробнее</span>
+            </span>
+                    </a>
+                </div>
+            </div>
+
+        {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

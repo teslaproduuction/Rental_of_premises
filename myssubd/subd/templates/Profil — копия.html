@@ -1,0 +1,79 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container rounded bg-secondary mt-5 mb-5">
+    <div class="row">
+        <h3 class="text-center">Профиль</h3>
+        <div class="col-md-4">
+            <form method="POST" enctype="multipart/form-data" action=".">
+                    {% csrf_token %}
+            {% if user.Fotografiya %}
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-5" width="300px"   src="{{user.Fotografiya.url}}">
+                {% else %}
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-5" width="300px"   src="https://buzookod.ru/media/2816616767_vubrbeJ.jpg">
+                {% endif %}
+                 <div class="col-md-12">
+                    {{form.Fotografiya}}
+                  </div>
+                <span></span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="p-3 py-5">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Личные данные</h4>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-4 col-form-label">Имя</label>
+                  <div class="col-sm-8">
+                    {{form.username}}
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Отчество</label>
+                  <div class="col-sm-8">
+                    {{form.first_name}}
+                  </div>
+                </div>
+                    <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Фамилия</label>
+                  <div class="col-sm-8">
+                    {{form.last_name}}
+                  </div>
+                </div>
+                    <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Почта</label>
+                  <div class="col-sm-8">
+                    {{form.email}}
+                  </div>
+                </div>
+                     <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Телефон</label>
+                  <div class="col-sm-8">
+                    {{form.TelefonPolzovatelya}}
+                  </div>
+                          <button class="btn btn-success" style="margin: 20px;" type="submit">Сохранить</button>
+                </div>
+
+    </div>
+        </div>
+<div class="col-lg-4">
+           <div class="p-3 py-5">
+                <h4 class="text-left">Адреса</h4>
+                <br>
+               <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">Домашний адрес</label>
+                  <div class="col-md-12">
+                      {% if user.id_adres.id != null %}
+                      <span class="font-weight-bold">{{user.id_adres.Strana}}, г. {{user.id_adres.Gorod}}, Улица {{user.id_adres.Ulica}}, Дом {{user.id_adres.Dom}}</span>
+                        {% else %}
+                       <span class="font-weight-bold">Не указан</span>
+                        {% endif %}
+                  </div>
+                </div>
+            </div>
+{% endblock %}
+
+

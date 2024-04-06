@@ -1,0 +1,38 @@
+{% extends "nav.html" %}
+
+{% block content %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  {% load static %}
+
+</head>
+<body>
+
+    <div class="login-page">
+    <div class="form">
+      <form class="login-form acrylic" method="post" action="{% url 'login' %}">
+           <div class="position-absolute top-50 start-50 translate-middle" >
+        <span>Вход</span>
+        {% csrf_token %}
+          <div class="mb-3" style="width: 20rem;">
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+    <div id="emailHelp" class="form-text">Ваш ник или имя пользователя</div>
+  </div>
+          <div class="mb-3" style="width: 20rem;">
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+              <div id="passwordHelp" class="form-text">Пароль</div>
+  </div>
+           <div class="mb-3" style="width: 20rem;">
+        <button type="submit" class="btn btn-primary" id="SignIn">Вход</button>
+        </div>
+           </div>
+      </form>
+    </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+</body>
+</html>
+{% endblock %}
